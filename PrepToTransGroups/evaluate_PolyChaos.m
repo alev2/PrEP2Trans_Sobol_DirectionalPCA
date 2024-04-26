@@ -7,13 +7,13 @@ baseDomain=domain(1,:);
 
 %evalDomain=interventionDirections(:,2)';
 %evalDomain=directions(:,4)';
-evalDomain=[0.5 0.5 0.5 0.5 0.5];
+evalDomain=[0.5 0.0 0.0 0.0 0.0];
 
 num_Yrs=length(yearInds);
 consideredYears=yearRange(yearInds);
 
-start_YrSum=2023;
-end_YrSum=2042;
+start_YrSum=2024;
+end_YrSum=2025;
 
 yr1=find(consideredYears==start_YrSum);
 yr2=find(consideredYears==end_YrSum);
@@ -25,8 +25,10 @@ yr2=find(consideredYears==end_YrSum);
 % 3. PrEP HETF
 % 4. PrEP MSM
 % 5. PrEP PWID
-idx_dx=4;
+idx_dx=2;
 relevantInterval=linspace(dominio(1,idx_dx),dominio(2,idx_dx),101);
+
+
 
 polyChaosEval=0;
 XX=Sr.knots;
@@ -63,6 +65,22 @@ output_Of_Interest_KnotPts=[];
 [deriv_modal_coeffs12,deriv_K12]=compute_DerivativePolyChaos(modal_coeffs12,K12,idx_dx);
 [deriv_modal_coeffs13,deriv_K13]=compute_DerivativePolyChaos(modal_coeffs13,K13,idx_dx);
 
+
+
+%outputs (for mixing and prep, expanded output space)
+%1. MSM incidence
+%2. HETF incidence
+%3. HETM incidence
+%4. PWID incidence
+%5. All incidence
+%6. Num PrEP MSM
+%7. Num PrEP HETF
+%8. Num PrEP HETM
+%9. Num PrEP PWID
+%10. Coverage MSM
+%11. Coverage HETF
+%12. Coverage HETM
+%13. Coverage PWID
 
 for j=1:length(relevantInterval)
 

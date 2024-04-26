@@ -24,7 +24,7 @@ msm_PrepRange=[0 1];
 pwid_PrepRange=[0 1];
 
 
-outputRoot='./PrepToTransGroups/VerificationOfProblem_LoMix/simulation_';
+outputRoot='./PrepToTransGroups/RevisedAttempt/simulation_';
 %outputRoot='./Results_NoVLS_Dec27/Verification_HopeSim/simulation_';
 %outputRoot='./datasetInput/simulation_';
 %outputRoot='./dataset20Years/simulation_';
@@ -145,8 +145,12 @@ Parameters_Cur(indsDiscRate)=0.;
 kFactor=1;
 %evalDomain=[0 0 1 .864 .79 .83 .15 .16 1 1 .246 .252 .531 .473 .2502 .137];
 %load('evalDomain_22Jan.mat');
-load('principalDirections_LoMix2.mat');
+%load('principalDirections_LoMix2.mat');
+load('principalDirections_NumPrEP.mat');
 evalDomain=[0.5 0.5 0.5 0.5 0.5];
+%evalDomain=[0. 0. 0. 0. 0.];
+
+
 %load('principalDirections_Rescaled_22Jan.mat');
 
 
@@ -215,9 +219,16 @@ for i=1:size(interventionDirections,2)
     ann_NewInfections_HETM=sum(outTest.ann_NewInfectionsHETM,2);
     ann_NewInfections_HETF=sum(outTest.ann_NewInfectionsHETF,2);
     ann_NewInfections_Total=sum(outTest.ann_TotalNewInfections,2);
+
+    NumberOnPrEPMSM=sum(outTest.ann_NumberOnPrEP_HighRiskMSM,2);
+    NumberOnPrEPPWID=sum(outTest.ann_NumberOnPrEP_HighRiskIDUs,2);
+    NumberOnPrEPHETM=sum(outTest.ann_NumberOnPrEP_HighRiskHETs_M,2);
+    NumberOnPrEPHETF=sum(outTest.ann_NumberOnPrEP_HighRiskHETs_F,2);
     
 
-    outputMatrix=[ann_NewInfections_MSM ann_NewInfections_HETF ann_NewInfections_HETM ann_NewInfections_PWID ann_NewInfections_Total];       
+%    outputMatrix=[ann_NewInfections_MSM ann_NewInfections_HETF ann_NewInfections_HETM ann_NewInfections_PWID ann_NewInfections_Total];       
+%    outputMatrix=[ann_NewInfections_MSM ann_NewInfections_HETF ann_NewInfections_HETM ann_NewInfections_PWID ann_NewInfections_Total];       
+    outputMatrix= [NumberOnPrEPMSM NumberOnPrEPHETF NumberOnPrEPHETM NumberOnPrEPPWID];
        
     incidenceOut=array2table([outputMatrix(yearInds,:)]);% annualDeaths(1:end,:) pctAware(1:end,:)]);
 

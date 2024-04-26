@@ -9,12 +9,12 @@ function [] = plotInputDirection(inputDirection,interventionNames,tileDim)
     for i=1:size(inputDirection,2)
 
         nexttile
-        bar(interventionNames,inputDirection(:,i))
+        bar(interventionNames,.1*(inputDirection(:,i)/max(abs(inputDirection(:,i)))))
         title(strcat('InputPC:\,\,',num2str(i)),'Interpreter','latex','FontSize',50);
         set(gca,'FontSize',fs);
         ax=gca;
         ax.YAxis.Exponent=0;
-        %ylim([-.015 .015])
+        ylim([-.125 .125])
 
     end
 

@@ -9,7 +9,7 @@ fprintf('setup done\n');
 
 % Sobol indices computation
 
-N = 5; % number of parameters...
+N = 4; % number of parameters...
 
 %long ART reduction factor 
 %longART_LoseVLS_ReductionFactor=.25;
@@ -33,11 +33,11 @@ pwid_PrepRange=[0 1];
 num_Yrs=length(yearInds);
 
 % CHANGE HERE! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-int_p1 = mixing_Range; % interval of variation for parameter 1 
-int_p2 = hetm_PrepRange; % interval of variation for parameter 2
-int_p3 = hetf_PrepRange; % interval of variation for parameter 3
-int_p4 = msm_PrepRange; % interval of variation for parameter 4
-int_p5 = pwid_PrepRange; % interval of variation for parameter 5
+%int_p1 = mixing_Range; % interval of variation for parameter 1 
+int_p1 = hetm_PrepRange; % interval of variation for parameter 2
+int_p2 = hetf_PrepRange; % interval of variation for parameter 3
+int_p3 = msm_PrepRange; % interval of variation for parameter 4
+int_p4 = pwid_PrepRange; % interval of variation for parameter 5
 %int_p6 = move2to3_atDiag_Hisp; % interval of variation for parameter 6
 %int_p7 = move2to3_afterDiag_Black; % interval of variation for parameter 7
 %int_p8 = move2to3_afterDiag_Hisp; % interval of variation for parameter 8
@@ -51,7 +51,7 @@ int_p5 = pwid_PrepRange; % interval of variation for parameter 5
 % int_p6 = move5to4_Hisp; % interval of variation for parameter 16
 
 
-domain = [int_p1',int_p2',int_p3', int_p4', int_p5'];%, int_p6'];% int_p7' int_p8',...
+domain = [int_p1',int_p2',int_p3', int_p4'];%, int_p5'];%, int_p6'];% int_p7' int_p8',...
 %          int_p9' int_p10' int_p11' int_p12' int_p13' int_p14' int_p15' int_p16' ]; % define the N-dim. domain - we need this in the function that computes the Sobol indices 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -61,7 +61,7 @@ knots_1 = @(n) knots_leja(n,int_p1(1),int_p1(2),'sym_line');
 knots_2 = @(n) knots_leja(n,int_p2(1),int_p2(2),'sym_line');
 knots_3 = @(n) knots_leja(n,int_p3(1),int_p3(2),'sym_line');
 knots_4 = @(n) knots_leja(n,int_p4(1),int_p4(2),'sym_line');
-knots_5 = @(n) knots_leja(n,int_p5(1),int_p5(2),'sym_line');
+%knots_5 = @(n) knots_leja(n,int_p5(1),int_p5(2),'sym_line');
 % knots_6 = @(n) knots_leja(n,int_p6(1),int_p6(2),'sym_line');
 %knots_7 = @(n) knots_leja(n,int_p7(1),int_p7(2),'sym_line');
 %knots_8 = @(n) knots_leja(n,int_p8(1),int_p8(2),'sym_line');
@@ -76,7 +76,7 @@ knots_5 = @(n) knots_leja(n,int_p5(1),int_p5(2),'sym_line');
 
 
 % combine the knots for the three parameters in one - we need this as input to the function that creates the sparse grid
-knots = {knots_1,knots_2,knots_3, knots_4, knots_5};%, knots_6};%, knots_7, knots_8...
+knots = {knots_1,knots_2,knots_3, knots_4};%, knots_5};%, knots_6};%, knots_7, knots_8...
 %         knots_9 knots_10 knots_11 knots_12 knots_13 knots_14 knots_15 knots_16}; 
 fprintf('all sparsegrid prelim stuff done\n');
 
@@ -119,7 +119,7 @@ nb_pts = size(sg_pts,2); % variable to know how many points we have at hand
 % - Assuming 3 groups and results for 5 years, the table contains 15 data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-outputRoot='./PrepToTransGroups/Results_MixingAndPrEP_ReducedMixing/simulation_';
+outputRoot='./PrepToTransGroups/Results_MixingAndPrEP_ExpandedOutputSpace_NoMixing/simulation_';
 %outputRoot='./datasetInput/simulation_';
 %outputRoot='./dataset20Years/simulation_';
 Alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -248,31 +248,31 @@ for i=1:nb_pts
     %prepMult_Black_SimVal=sg_pts(1,i);
     %prepMult_Hisp_SimVal=sg_pts(2,i);
     
-    fprintf('Changing mixing matrix... ');
-    mixing_Factor=sg_pts(1,i);    
-    mixing_Matrix=min_MixMat+mixing_Factor*mix_Delta;    
-    Parameters_Cur(mixingInds)=mixing_Matrix;
+%     fprintf('Changing mixing matrix... ');
+%     mixing_Factor=sg_pts(1,i);    
+     mixing_Matrix=min_MixMat+.5*mix_Delta;    
+     Parameters_Cur(mixingInds)=mixing_Matrix;
     
     fprintf('Changing HETM PrEP... ');
-    prep_HETM_Factor=sg_pts(2,i);    
+    prep_HETM_Factor=sg_pts(1,i);    
     prep_HETM=min_PrepHETM+prep_HETM_Factor*prepHETM_Delta;    
     Parameters_Cur(indsPrepHETM2023)=prep_HETM;
     Parameters_Cur(indsPrepHETM2024)=prep_HETM;
 
     fprintf('Changing HETF PrEP... ');
-    prep_HETF_Factor=sg_pts(3,i);    
+    prep_HETF_Factor=sg_pts(2,i);    
     prep_HETF=min_PrepHETF+prep_HETF_Factor*prepHETF_Delta;    
     Parameters_Cur(indsPrepHETF2023)=prep_HETF;
     Parameters_Cur(indsPrepHETF2024)=prep_HETF;
 
     fprintf('Changing MSM PrEP... ');
-    prep_MSM_Factor=sg_pts(4,i);    
+    prep_MSM_Factor=sg_pts(3,i);    
     prep_MSM=min_PrepMSM+prep_MSM_Factor*prepMSM_Delta;    
     Parameters_Cur(indsPrepMSM2023)=prep_MSM;
     Parameters_Cur(indsPrepMSM2024)=prep_MSM;
 
     fprintf('Changing PWID PrEP... ');
-    prep_PWID_Factor=sg_pts(5,i);    
+    prep_PWID_Factor=sg_pts(4,i);    
     prep_PWID=min_PrepPWID+prep_PWID_Factor*prepPWID_Delta;    
     Parameters_Cur(indsPrepPWID2023)=prep_PWID;
     Parameters_Cur(indsPrepPWID2024)=prep_PWID;
@@ -296,10 +296,10 @@ for i=1:nb_pts
     NumberOnPrEPHETM=sum(outTest.ann_NumberOnPrEP_HighRiskHETs_M,2);
     NumberOnPrEPHETF=sum(outTest.ann_NumberOnPrEP_HighRiskHETs_F,2);
     
-    CoverageMSM=sum(Outcome.ann_PctEligOnPrEP_HRMSM,2);
-    CoveragePWID=sum(Outcome.ann_PctEligOnPrEP_PWID,2);
-    ann_PctEligOnPrEP_HRHET_M=sum(Outcome.ann_NumberOnPrEP_HighRiskHETs_M,2) ./sum(Outcome.ann_NumberEligForPrEP * Params.popSexIndicator(:,Params.popSex_HETM),2);
-    ann_PctEligOnPrEP_HRHET_F=sum(Outcome.ann_NumberOnPrEP_HighRiskHETs_F,2) ./sum(Outcome.ann_NumberEligForPrEP * Params.popSexIndicator(:,Params.popSex_HETF),2);
+    CoverageMSM=sum(outTest.ann_PctEligOnPrEP_HRMSM,2);
+    CoveragePWID=sum(outTest.ann_PctEligOnPrEP_PWID,2);
+    ann_PctEligOnPrEP_HRHET_M=sum(outTest.ann_NumberOnPrEP_HighRiskHETs_M,2) ./sum(outTest.ann_NumberEligForPrEP * Params.popSexIndicator(:,Params.popSex_HETM),2);
+    ann_PctEligOnPrEP_HRHET_F=sum(outTest.ann_NumberOnPrEP_HighRiskHETs_F,2) ./sum(outTest.ann_NumberEligForPrEP * Params.popSexIndicator(:,Params.popSex_HETF),2);
 
 
 %    outputMatrix=[ann_NewInfections_Blk ann_NewInfections_Hisp irr_Blk irr_Hisp spending ann_NewInfections_Oth ann_NewInfections_Tot ...

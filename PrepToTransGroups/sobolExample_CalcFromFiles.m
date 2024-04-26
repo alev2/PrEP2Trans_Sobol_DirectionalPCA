@@ -331,18 +331,19 @@ for j = 1:num_Yrs
   [Sob_g13,Tot_Sob_g13,m13,v13] = compute_sobol_indices_from_sparse_grid(S,Sr,values_g13(j,:),domain,'legendre'); 
 
 
- %   [Sob_g1,Tot_Sob_g1,m1,v1,vi1,vti1] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi1_All, VTi1_All, v1_new, values_g1(j,:),domain,'legendre'); 
- %   [Sob_g2,Tot_Sob_g2,m2,v2,vi2,vti2] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi2_All, VTi2_All, v2_new, values_g2(j,:),domain,'legendre'); 
- %   [Sob_g3,Tot_Sob_g3,m3,v3,vi3,vti3] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi3_All, VTi3_All, v3_new, values_g3(j,:),domain,'legendre'); 
- %  [Sob_g4,Tot_Sob_g4,m4,v4,vi4,vti4] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi4_All, VTi4_All, v4_new, values_g4(j,:),domain,'legendre'); 
- %  [Sob_g5,Tot_Sob_g5,m5,v5,vi5,vti5] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi5_All, VTi5_All, v5_new, values_g5(j,:),domain,'legendre'); 
- %  [Sob_g6,Tot_Sob_g6,m6,v6,vi6,vti6] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi6_All, VTi6_All, v6_new, values_g6(j,:),domain,'legendre'); 
- %  [Sob_g7,Tot_Sob_g7,m7,v7,vi7,vti7] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi7_All, VTi7_All, v7_new, values_g7(j,:),domain,'legendre'); 
- %   [Sob_g8,Tot_Sob_g8,m8,v8,vi8,vti8] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi8_All, VTi8_All, v8_new, values_g8(j,:),domain,'legendre'); 
- %  [Sob_g9,Tot_Sob_g9,m9,v9,vi9,vti9] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi9_All, VTi9_All, v9_new, values_g9(j,:),domain,'legendre'); 
- %  [Sob_g10,Tot_Sob_g10,m10,v10,vi10,vti10] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi10_All, VTi10_All, v10_new, values_g10(j,:),domain,'legendre'); 
- %  [Sob_g11,Tot_Sob_g11,m11,v11,vi11,vti11] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi11_All, VTi11_All, v11_new, values_g11(j,:),domain,'legendre'); 
- %  [Sob_g12,Tot_Sob_g12,m12,v12,vi12,vti12] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi12_All, VTi12_All, v12_new, values_g12(j,:),domain,'legendre'); 
+%    [Sob_g1,Tot_Sob_g1,m1,v1,vi1,vti1] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi1_All, VTi1_All, v1_new, values_g1(j,:),domain,'legendre'); 
+%    [Sob_g2,Tot_Sob_g2,m2,v2,vi2,vti2] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi2_All, VTi2_All, v2_new, values_g2(j,:),domain,'legendre'); 
+%    [Sob_g3,Tot_Sob_g3,m3,v3,vi3,vti3] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi3_All, VTi3_All, v3_new, values_g3(j,:),domain,'legendre'); 
+%   [Sob_g4,Tot_Sob_g4,m4,v4,vi4,vti4] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi4_All, VTi4_All, v4_new, values_g4(j,:),domain,'legendre'); 
+%   [Sob_g5,Tot_Sob_g5,m5,v5,vi5,vti5] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi5_All, VTi5_All, v5_new, values_g5(j,:),domain,'legendre'); 
+%   [Sob_g6,Tot_Sob_g6,m6,v6,vi6,vti6] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi6_All, VTi6_All, v6_new, values_g6(j,:),domain,'legendre'); 
+%   [Sob_g7,Tot_Sob_g7,m7,v7,vi7,vti7] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi7_All, VTi7_All, v7_new, values_g7(j,:),domain,'legendre'); 
+%    [Sob_g8,Tot_Sob_g8,m8,v8,vi8,vti8] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi8_All, VTi8_All, v8_new, values_g8(j,:),domain,'legendre'); 
+%   [Sob_g9,Tot_Sob_g9,m9,v9,vi9,vti9] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi9_All, VTi9_All, v9_new, values_g9(j,:),domain,'legendre'); 
+%   [Sob_g10,Tot_Sob_g10,m10,v10,vi10,vti10] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi10_All, VTi10_All, v10_new, values_g10(j,:),domain,'legendre'); 
+%   [Sob_g11,Tot_Sob_g11,m11,v11,vi11,vti11] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi11_All, VTi11_All, v11_new, values_g11(j,:),domain,'legendre'); 
+%   [Sob_g12,Tot_Sob_g12,m12,v12,vi12,vti12] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi12_All, VTi12_All, v12_new, values_g12(j,:),domain,'legendre'); 
+%   [Sob_g13,Tot_Sob_g13,m13,v13,vi13,vti13] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi13_All, VTi13_All, v13_new, values_g13(j,:),domain,'legendre'); 
 
 %     [Sob_g1,Tot_Sob_g1,m1,v1] = compute_variance_decomposition_from_sparse_grid(S,Sr,values_g1(j,:),domain,'legendre'); 
 %     [Sob_g2,Tot_Sob_g2,m2,v2] = compute_variance_decomposition_from_sparse_grid(S,Sr,values_g2(j,:),domain,'legendre'); 
@@ -356,6 +357,7 @@ for j = 1:num_Yrs
 %     [Sob_g10,Tot_Sob_g10,m10,v10] = compute_variance_decomposition_from_sparse_grid(S,Sr,values_g10(j,:),domain,'legendre'); 
 %     [Sob_g11,Tot_Sob_g11,m11,v11] = compute_variance_decomposition_from_sparse_grid(S,Sr,values_g11(j,:),domain,'legendre'); 
 %     [Sob_g12,Tot_Sob_g12,m12,v12] = compute_variance_decomposition_from_sparse_grid(S,Sr,values_g12(j,:),domain,'legendre'); 
+%     [Sob_g13,Tot_Sob_g13,m13,v13] = compute_variance_decomposition_from_sparse_grid(S,Sr,values_g13(j,:),domain,'legendre'); 
 
     Sob_g1_All=[Sob_g1_All Sob_g1];
     Sob_g2_All=[Sob_g2_All Sob_g2];

@@ -1,4 +1,4 @@
-function [] = plotInterventionDirection(baselineDirection, inputDirection,interventionNames,tileDim)
+dfunction [] = plotInterventionDirection(baselineDirection, inputDirection,interventionNames,tileDim)
 %UNTITLED13 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -18,16 +18,16 @@ function [] = plotInterventionDirection(baselineDirection, inputDirection,interv
     for i=1:size(inputDirection,2)
 
         nexttile
-        bar(interventionNames,inputDirection(:,i))
-        title(strcat('InputPC:\,\,',num2str(i)),'Interpreter','latex','FontSize',50);
+        bar(interventionNames,.1*inputDirection(:,i)/max(abs(inputDirection(:,i))))
+        title(strcat('{\boldmath$\tau_{',num2str(i),'}$}'),'Interpreter','latex','FontSize',70);
         set(gca,'FontSize',fs);
         ax=gca;
         ax.YAxis.Exponent=0;
-       ylim([-.1 .1])
+       ylim([-.12 .12])
 
     end
 
-   
-    %posMat=[-1845,251,1628,441];
-    %set(gcf,'Position',posMat);
+   posMat=[-1651,167,1044,619];
+%    posMat=[-1651,210,1045,576];
+    set(gcf,'Position',posMat);
 end

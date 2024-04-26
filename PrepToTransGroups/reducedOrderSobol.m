@@ -4,7 +4,7 @@
 fs=14;
 fs2=14;
 posMat=[-1845,251,1628,441];
-
+posMat2=[-1845,66,957,626];
 interventionNames=categorical({...
     'Mixing level',...
     'PrEP, HETM',...
@@ -30,6 +30,7 @@ outputNames=categorical({...
     'IncidencePWID',...
     'IncidenceTotal',...
  });
+
 outputNames=reordercats(outputNames,{...
     'IncidenceMSM',...
     'IncidenceHETF',...
@@ -64,13 +65,14 @@ reduced_Outputs=(UApx')*modelOutputsNorm_Apx;
 
 
 
-%[Sob_r1,Tot_Sob_r1,m1,v1] = compute_sobol_indices_from_sparse_grid(S,Sr,reduced_Outputs(1,:),domain,'legendre'); 
-%[Sob_r2,Tot_Sob_r2,m2,v2] = compute_sobol_indices_from_sparse_grid(S,Sr,reduced_Outputs(2,:),domain,'legendre'); 
-%[Sob_r3,Tot_Sob_r3,m3,v3] = compute_sobol_indices_from_sparse_grid(S,Sr,reduced_Outputs(3,:),domain,'legendre'); 
-[Sob_r1,Tot_Sob_r1,m1,v1] = compute_variance_decomposition_from_sparse_grid(S,Sr,reduced_Outputs(1,:),domain,'legendre'); 
-[Sob_r2,Tot_Sob_r2,m2,v2] = compute_variance_decomposition_from_sparse_grid(S,Sr,reduced_Outputs(2,:),domain,'legendre'); 
-[Sob_r3,Tot_Sob_r3,m3,v3] = compute_variance_decomposition_from_sparse_grid(S,Sr,reduced_Outputs(3,:),domain,'legendre'); 
-[Sob_r4,Tot_Sob_r4,m4,v4] = compute_variance_decomposition_from_sparse_grid(S,Sr,reduced_Outputs(4,:),domain,'legendre'); 
+[Sob_r1,Tot_Sob_r1,m1,v1] = compute_sobol_indices_from_sparse_grid(S,Sr,reduced_Outputs(1,:),domain,'legendre'); 
+[Sob_r2,Tot_Sob_r2,m2,v2] = compute_sobol_indices_from_sparse_grid(S,Sr,reduced_Outputs(2,:),domain,'legendre'); 
+[Sob_r3,Tot_Sob_r3,m3,v3] = compute_sobol_indices_from_sparse_grid(S,Sr,reduced_Outputs(3,:),domain,'legendre'); 
+[Sob_r4,Tot_Sob_r4,m4,v4] = compute_sobol_indices_from_sparse_grid(S,Sr,reduced_Outputs(4,:),domain,'legendre'); 
+% [Sob_r1,Tot_Sob_r1,m1,v1] = compute_variance_decomposition_from_sparse_grid(S,Sr,reduced_Outputs(1,:),domain,'legendre'); 
+% [Sob_r2,Tot_Sob_r2,m2,v2] = compute_variance_decomposition_from_sparse_grid(S,Sr,reduced_Outputs(2,:),domain,'legendre'); 
+% [Sob_r3,Tot_Sob_r3,m3,v3] = compute_variance_decomposition_from_sparse_grid(S,Sr,reduced_Outputs(3,:),domain,'legendre'); 
+% [Sob_r4,Tot_Sob_r4,m4,v4] = compute_variance_decomposition_from_sparse_grid(S,Sr,reduced_Outputs(4,:),domain,'legendre'); 
 %[Sob_r5,Tot_Sob_r5,m5,v5] = compute_sobol_indices_from_sparse_grid(S,Sr,reduced_Outputs(5,:),domain,'legendre'); 
 
 % [Sob_r1,Tot_Sob_r1,m1,v1] =compute_variance_decomposition_from_sparse_grid(S,Sr,reduced_Outputs(1,:),domain,'legendre');
@@ -98,18 +100,18 @@ tp=tiledlayout(2,2,'TileSpacing','compact','Padding','compact');
 nexttile
 bar(outputNames,UApx(:,1)*SApx(1,1));
 ylabel('PC Loading', 'Interpreter','latex','FontSize',50);
-ylim([-25 25])
+ylim([-20 20])
 %xticklabels(interventionNames);
-title('PC1', 'Interpreter','latex','FontSize',50);
+title('$U_1$', 'Interpreter','latex','FontSize',50);
 set(gca,'FontSize',fs);
 ax=gca;
 
 nexttile
 bar(outputNames,UApx(:,2)*SApx(2,2));
 ylabel('PC Loading', 'Interpreter','latex','FontSize',50);
-ylim([-25 25])
+ylim([-20 20])
 %xticklabels(interventionNames);
-title('PC2', 'Interpreter','latex','FontSize',50);
+title('$U_2$', 'Interpreter','latex','FontSize',50);
 set(gca,'FontSize',fs);
 ax=gca;
 
@@ -117,25 +119,25 @@ ax=gca;
 nexttile
 bar(outputNames,UApx(:,3)*SApx(3,3));
 ylabel('PC Loading', 'Interpreter','latex','FontSize',50);
-ylim([-25 25])
+ylim([-20 20])
 %xticklabels(interventionNames);
-title('PC3', 'Interpreter','latex','FontSize',50);
+title('$U_3$', 'Interpreter','latex','FontSize',50);
 set(gca,'FontSize',fs);
 ax=gca;
 
 nexttile
 bar(outputNames,UApx(:,4)*SApx(4,4));
 ylabel('PC Loading', 'Interpreter','latex','FontSize',50);
-ylim([-25 25])
+ylim([-20 20])
 %xticklabels(interventionNames);
-title('PC4', 'Interpreter','latex','FontSize',50);
+title('$U_4$', 'Interpreter','latex','FontSize',50);
 set(gca,'FontSize',fs);
 ax=gca;
 
 
 
 
-set(gcf,'Position',posMat);
+set(gcf,'Position',posMat2);
 figure
 
 
@@ -197,6 +199,7 @@ ax=gca;
 nexttile
 
 bar(interventionNames,Tot_Sob_r4)
+
 ylabel('Total sobol index', 'Interpreter','latex','FontSize',50);
 ylim([0 1])
 

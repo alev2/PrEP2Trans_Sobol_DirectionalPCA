@@ -8,7 +8,8 @@ dominio=domain;
 %evalDomain= baseDomain;
 %evalDomain=[.2 .2 1.5 1.25 .85 .85 .2 .2 1.25 1.25 .15 .15 .7 .7 .1 .1];
 %evalDomain=[.1 .1 .1 .1 .1 .1 .1 .1 .1 .1 .9 .9 .1 .1 .9 .9];
-evalDomain=[0.5 0.5 0.5 0.5 0.5];
+evalDomain=[1 1 1 1 1]*.0;
+%evalDomain=[0. 0. 0. 0. 0.];
 %evalDomain=[.0          .01          1.1       0.9776        0.809        0.845        0.165        0.174          1.1          1.1       0.2234       0.2288       0.5679       0.5157      0.12718       0.1253];
 
 % evalDomain([3 4 5 6 7 8 9 10 13 14] )=evalDomain([3 4 5 6 7 8 9 10 13 14])*1.1;
@@ -51,10 +52,14 @@ end
 [Uu,Ss,Vv]=svd(jacobianMatrix);
 Uk=Uu(:,1:numOutputs);
 Sk=Ss(1:numOutputs,1:numOutputs);
+%Sk(1,1)=1/Sk(1,1);
+%Sk(2,2)=1/Sk(2,2);
+%Sk(3,3)=1/Sk(3,3);
+
 Vk=Vv(:,1:numOutputs);
 
 
 principalDirections=Vk*(Sk\Uk')*(eye(numOutputs,numOutputs));
 
-
+%principalDirections=jacobianMatrix\(eye(numOutputs,numOutputs));
 

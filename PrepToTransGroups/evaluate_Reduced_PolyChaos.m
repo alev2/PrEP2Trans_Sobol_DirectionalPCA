@@ -11,20 +11,27 @@ rescaleIntervals=0;
 mmm=[          
 
 
-         -7.59312365836971
-         -7.31859778778378
-          6.09893082455153
-         -1.41493907814052
+
+
+         0.245007075227838
+          1.35360878781941
+        0.0377883736704299
+         -3.07375000984079
 
 ];
 
 
-evalDomain_Base=[0.5 0.5 0.5 0.5 0.5];
+evalDomain_Base=[1 1 1 1 1 ]*.0;
 
-%newDir=Vk*(Sk\Uk')*[0; 0; 0  ;0;];
-newDir=Vk*(Sk\Uk')*mmm;
+%newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\([481445; 34218; 32511; 13809] - rowMeans(:,1)) )));
+%newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\(AA(:,1) - rowMeans(:,1)) )));
 
-evalDomain=[evalDomain_Base' evalDomain_Base'+newDir];
+%newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\([400000; 67000; 36000; 31000; 534000] - rowMeans(:,1)) )));
+%newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\(mm - rowMeans(:,1)) )));
+
+newDir=principalDirections(:,3)-principalDirections(:,2);  Vk*(Sk\Uk')*[1;0;0;0];
+
+evalDomain=[evalDomain_Base' evalDomain_Base'+newDir ];
 
 evalDomain_Full=[];
 if rescaleIntervals==1

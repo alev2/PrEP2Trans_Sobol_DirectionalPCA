@@ -198,7 +198,13 @@ indsPrepPWID2024=[
         1342-789;
     ];
 
+ind1to2HET=956-789;
+ind1to2MSM=957-789;
+ind1to2PWID=958-789;
 
+ind5to4HET=1117-789;
+ind5to4MSM=1118-789;
+ind5to4PWID=1119-789;
 
 indsDiscRate=810-789;
 
