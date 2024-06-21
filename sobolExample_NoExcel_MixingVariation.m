@@ -119,7 +119,7 @@ nb_pts = size(sg_pts,2); % variable to know how many points we have at hand
 % - Assuming 3 groups and results for 5 years, the table contains 15 data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-outputRoot='./PrepToTransGroups/Results_MixingAndPrEP_ExpandedOutputSpace_NoMixing/simulation_';
+outputRoot='./PrepToTransGroups/Results_MixingAndPrEP_SIAMLS_Example2/simulation_';
 %outputRoot='./datasetInput/simulation_';
 %outputRoot='./dataset20Years/simulation_';
 Alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -301,11 +301,13 @@ for i=1:nb_pts
     ann_PctEligOnPrEP_HRHET_M=sum(outTest.ann_NumberOnPrEP_HighRiskHETs_M,2) ./sum(outTest.ann_NumberEligForPrEP * Params.popSexIndicator(:,Params.popSex_HETM),2);
     ann_PctEligOnPrEP_HRHET_F=sum(outTest.ann_NumberOnPrEP_HighRiskHETs_F,2) ./sum(outTest.ann_NumberEligForPrEP * Params.popSexIndicator(:,Params.popSex_HETF),2);
 
+    spending=outTest.ann_ARTCarePrEPTransitionAndSEPCost_Disc;
 
 %    outputMatrix=[ann_NewInfections_Blk ann_NewInfections_Hisp irr_Blk irr_Hisp spending ann_NewInfections_Oth ann_NewInfections_Tot ...
 %                  ann_PctOnART ann_PctVLSamongdiag ann_PctVLSamongdiag_Blk ann_PctVLSamongdiag_Hisp ann_PctVLSamongdiag_Oth];
 
     outputMatrix=[ann_NewInfections_MSM ann_NewInfections_HETF ann_NewInfections_HETM ann_NewInfections_PWID ann_NewInfections_Total ... 
+                  spending ...
                   NumberOnPrEPMSM NumberOnPrEPHETF NumberOnPrEPHETM NumberOnPrEPPWID ...
                   CoverageMSM ann_PctEligOnPrEP_HRHET_F ann_PctEligOnPrEP_HRHET_M CoveragePWID];
        
@@ -338,6 +340,7 @@ values_g10 = 0*ones(num_Yrs,nb_pts); % pct on prep msm
 values_g11 = 0*ones(num_Yrs,nb_pts); % pct on prep hetf 
 values_g12 = 0*ones(num_Yrs,nb_pts); % pct on prep hetm
 values_g13 = 0*ones(num_Yrs,nb_pts); % pct on prep pwid
+values_g14 = 0*ones(num_Yrs,nb_pts); % pct on prep pwid
 
 values_ = 0*ones(num_Yrs, nb_pts, size(incidenceOut,1) );
 
@@ -359,14 +362,15 @@ for k=1:nb_pts
     values_g3(:,k) = tableIn(:,3);
     values_g4(:,k) = tableIn(:,4);
     values_g5(:,k) = tableIn(:,5);    
-    values_g6(:,k) = tableIn(:,6);    
+    values_g6(:,k) = tableIn(:,6)/1e9;    
     values_g7(:,k) = tableIn(:,7);    
     values_g8(:,k) = tableIn(:,8); % if you give another input to xlsread you can select columns in the file 
     values_g9(:,k) = tableIn(:,9);
     values_g10(:,k) = tableIn(:,10);
     values_g11(:,k) = tableIn(:,11);
     values_g12(:,k) = tableIn(:,12);    
-    values_g12(:,k) = tableIn(:,13);    
+    values_g13(:,k) = tableIn(:,13);    
+    values_g14(:,k) = tableIn(:,14);    
 
     for kk=1:size(incidenceOut,2) 
         values_(:,k,kk) = tableIn(:,kk); % if you give another input to xlsread you can select columns in the file 
@@ -399,6 +403,7 @@ Sob_g10_All=[];
 Sob_g11_All=[];
 Sob_g12_All=[];
 Sob_g13_All=[];
+Sob_g14_All=[];
 
 Tot_Sob_g1_All=[];
 Tot_Sob_g2_All=[];
@@ -413,6 +418,7 @@ Tot_Sob_g10_All=[];
 Tot_Sob_g11_All=[];
 Tot_Sob_g12_All=[];
 Tot_Sob_g13_All=[];
+Tot_Sob_g14_All=[];
 
 m1_All=[];
 m2_All=[];
@@ -427,6 +433,7 @@ m10_All=[];
 m11_All=[];
 m12_All=[];
 m13_All=[];
+m14_All=[];
 
 v1_All=[];
 v2_All=[];
@@ -441,6 +448,7 @@ v10_All=[];
 v11_All=[];
 v12_All=[];
 v13_All=[];
+v14_All=[];
 
 v1_new=[];
 v2_new=[];
@@ -455,6 +463,7 @@ v10_new=[];
 v11_new=[];
 v12_new=[];
 v13_new=[];
+v14_new=[];
 
 VTi1_All=[];
 VTi2_All=[];
@@ -469,6 +478,7 @@ VTi10_All=[];
 VTi11_All=[];
 VTi12_All=[];
 VTi13_All=[];
+VTi14_All=[];
 
 Vi1_All=[];
 Vi2_All=[];
@@ -483,6 +493,7 @@ Vi10_All=[];
 Vi11_All=[];
 Vi12_All=[];
 Vi13_All=[];
+Vi14_All=[];
 
 vti1=[];
 vti2=[];
@@ -497,8 +508,9 @@ vti10=[];
 vti11=[];
 vti12=[];
 vti13=[];
+vti14=[];
 
-vi1=[];vi2=[];vi3=[];vi4=[];vi5=[];vi6=[];vi7=[];vi8=[];vi9=[];vi10=[];vi11=[];vi12=[];vi13=[];
+vi1=[];vi2=[];vi3=[];vi4=[];vi5=[];vi6=[];vi7=[];vi8=[];vi9=[];vi10=[];vi11=[];vi12=[];vi13=[];vi14=[];
 
 fprintf('Computing variance decomposition... ');
 for j = 1:num_Yrs
@@ -516,6 +528,7 @@ for j = 1:num_Yrs
   [Sob_g11,Tot_Sob_g11,m11,v11] = compute_sobol_indices_from_sparse_grid(S,Sr,values_g11(j,:),domain,'legendre'); 
   [Sob_g12,Tot_Sob_g12,m12,v12] = compute_sobol_indices_from_sparse_grid(S,Sr,values_g12(j,:),domain,'legendre'); 
   [Sob_g13,Tot_Sob_g13,m13,v13] = compute_sobol_indices_from_sparse_grid(S,Sr,values_g13(j,:),domain,'legendre'); 
+  [Sob_g14,Tot_Sob_g14,m14,v14] = compute_sobol_indices_from_sparse_grid(S,Sr,values_g14(j,:),domain,'legendre'); 
 % 
 
  %   [Sob_g1,Tot_Sob_g1,m1,v1,vi1,vti1] = compute_sobol_indices_from_sparse_grid_with_history(S,Sr, Vi1_All, VTi1_All, v1_new, values_g1(j,:),domain,'legendre'); 
@@ -559,6 +572,7 @@ for j = 1:num_Yrs
     Sob_g11_All=[Sob_g11_All Sob_g11];
     Sob_g12_All=[Sob_g12_All Sob_g12];    
     Sob_g13_All=[Sob_g13_All Sob_g13];    
+    Sob_g14_All=[Sob_g14_All Sob_g14];    
         
     Tot_Sob_g1_All=[Tot_Sob_g1_All Tot_Sob_g1];
     Tot_Sob_g2_All=[Tot_Sob_g2_All Tot_Sob_g2];
@@ -573,6 +587,7 @@ for j = 1:num_Yrs
     Tot_Sob_g11_All=[Tot_Sob_g11_All Tot_Sob_g11];   
     Tot_Sob_g12_All=[Tot_Sob_g12_All Tot_Sob_g12];   
     Tot_Sob_g13_All=[Tot_Sob_g13_All Tot_Sob_g13];   
+    Tot_Sob_g14_All=[Tot_Sob_g14_All Tot_Sob_g14];   
 
     m1_All=[m1_All m1];
     m2_All=[m2_All m2];
@@ -587,6 +602,7 @@ for j = 1:num_Yrs
     m11_All=[m11_All m11];
     m12_All=[m12_All m12];
     m13_All=[m13_All m13];
+    m14_All=[m14_All m14];
     
     v1_new=v1;
     v2_new=v2;
@@ -601,6 +617,7 @@ for j = 1:num_Yrs
     v11_new=v11;
     v12_new=v12;
     v13_new=v13;
+    v14_new=v14;
 
     v1_All=[v1_All v1];
     v2_All=[v2_All v2];
@@ -615,6 +632,7 @@ for j = 1:num_Yrs
     v11_All=[v11_All v11];
     v12_All=[v12_All v12];
     v13_All=[v13_All v13];
+    v14_All=[v14_All v14];
 
     VTi1_All=vti1;%[VTi1_All vti1];
     VTi2_All=vti2;%[VTi2_All vti2];
@@ -629,6 +647,7 @@ for j = 1:num_Yrs
     VTi11_All=vti11;%[VTi8_All vti8];
     VTi12_All=vti12;%[VTi8_All vti8];
     VTi13_All=vti13;%[VTi8_All vti8];
+    VTi14_All=vti14;%[VTi8_All vti8];
 
     Vi1_All=vi1;
     Vi2_All=vi2;%[Vi2_All vi2];
@@ -643,6 +662,7 @@ for j = 1:num_Yrs
     Vi11_All=vi11;%[Vi8_All vi8];
     Vi12_All=vi12;%[Vi8_All vi8];   
     Vi13_All=vi13;%[Vi8_All vi8];   
+    Vi14_All=vi14;%[Vi8_All vi8];   
     
 end
 
@@ -659,6 +679,7 @@ save('Sob_g10_All','Sob_g10_All')
 save('Sob_g11_All','Sob_g11_All')
 save('Sob_g12_All','Sob_g12_All')
 save('Sob_g13_All','Sob_g13_All')
+save('Sob_g14_All','Sob_g14_All')
 
 save('Tot_Sob_g1_All','Tot_Sob_g1_All')
 save('Tot_Sob_g2_All','Tot_Sob_g2_All')
@@ -673,6 +694,7 @@ save('Tot_Sob_g10_All','Tot_Sob_g10_All')
 save('Tot_Sob_g11_All','Tot_Sob_g11_All')
 save('Tot_Sob_g12_All','Tot_Sob_g12_All')
 save('Tot_Sob_g13_All','Tot_Sob_g13_All')
+save('Tot_Sob_g14_All','Tot_Sob_g14_All')
 
 
 

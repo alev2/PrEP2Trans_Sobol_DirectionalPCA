@@ -1,4 +1,4 @@
-dfunction [] = plotInterventionDirection(baselineDirection, inputDirection,interventionNames,tileDim)
+function [] = plotInterventionDirection(baselineDirection, inputDirection,interventionNames,tileDim)
 %UNTITLED13 Summary of this function goes here
 %   Detailed explanation goes here
 

@@ -129,7 +129,7 @@ nb_pts = size(sg_pts,2); % variable to know how many points we have at hand
 % - Assuming 3 groups and results for 5 years, the table contains 15 data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-outputRoot='./PrepToTransGroups/Results_PrEPAndInterventions/simulation_';
+outputRoot='./PrepToTransGroups/Results_PrEPAndInterventionsIncreased/simulation_';
 %outputRoot='./datasetInput/simulation_';
 %outputRoot='./dataset20Years/simulation_';
 Alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -238,27 +238,27 @@ prepPWID_Delta=max_PrepPWID-min_PrepPWID;
 
 
 max_AdhHET=1.0;
-min_AdhHET=0.5;
+min_AdhHET=0.125;
 adhHET_Delta=max_AdhHET-min_AdhHET;
 
 max_AdhMSM=2.724113407;
-min_AdhMSM=2.724113407*.5;
+min_AdhMSM=2.724113407*.125;
 adhMSM_Delta=max_AdhMSM-min_AdhMSM;
 
 max_AdhPWID=2.268609035;
-min_AdhPWID=2.268609035*.5;
+min_AdhPWID=2.268609035*.125;
 adhPWID_Delta=max_AdhPWID-min_AdhPWID;
 
 
-max_TestHET=2.0;
+max_TestHET=4.0;
 min_TestHET=1.0;
 testHET_Delta=max_TestHET-min_TestHET;
 
-max_TestMSM=4.030993484*2;
+max_TestMSM=4.030993484*4;
 min_TestMSM=4.030993484;
 testMSM_Delta=max_TestMSM-min_TestMSM;
 
-max_TestPWID=4.635738002*2;
+max_TestPWID=4.635738002*4;
 min_TestPWID=4.635738002;
 testPWID_Delta=max_TestPWID-min_TestPWID;
 

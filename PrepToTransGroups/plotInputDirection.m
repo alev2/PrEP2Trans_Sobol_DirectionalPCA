@@ -20,5 +20,5 @@ function [] = plotInputDirection(inputDirection,interventionNames,tileDim)
 
    
     posMat=[-1845,251,1628,441];
-    set(gcf,'Position',posMat);
+    %set(gcf,'Position',posMat);
 end

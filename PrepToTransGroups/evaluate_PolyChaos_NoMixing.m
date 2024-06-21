@@ -13,7 +13,7 @@ num_Yrs=length(yearInds);
 consideredYears=yearRange(yearInds);
 
 start_YrSum=2024;
-end_YrSum=2025;
+end_YrSum=2040;
 
 yr1=find(consideredYears==start_YrSum);
 yr2=find(consideredYears==end_YrSum);
@@ -49,6 +49,7 @@ output_Of_Interest_KnotPts=[];
 [modal_coeffs11,K11] = convert_to_modal(S,Sr,sum(values_g11(yr1:yr2,:)),domain,'legendre');    
 [modal_coeffs12,K12] = convert_to_modal(S,Sr,sum(values_g12(yr1:yr2,:)),domain,'legendre');    
 [modal_coeffs13,K13] = convert_to_modal(S,Sr,sum(values_g13(yr1:yr2,:)),domain,'legendre');    
+[modal_coeffs14,K14] = convert_to_modal(S,Sr,sum(values_g14(yr1:yr2,:)),domain,'legendre');    
 
 [deriv_modal_coeffs1,deriv_K1]=compute_DerivativePolyChaos(modal_coeffs1,K1,idx_dx);
 [deriv_modal_coeffs2,deriv_K2]=compute_DerivativePolyChaos(modal_coeffs2,K2,idx_dx);
@@ -63,6 +64,7 @@ output_Of_Interest_KnotPts=[];
 [deriv_modal_coeffs11,deriv_K11]=compute_DerivativePolyChaos(modal_coeffs11,K11,idx_dx);
 [deriv_modal_coeffs12,deriv_K12]=compute_DerivativePolyChaos(modal_coeffs12,K12,idx_dx);
 [deriv_modal_coeffs13,deriv_K13]=compute_DerivativePolyChaos(modal_coeffs13,K13,idx_dx);
+[deriv_modal_coeffs14,deriv_K14]=compute_DerivativePolyChaos(modal_coeffs14,K14,idx_dx);
 
 
 
@@ -81,6 +83,22 @@ output_Of_Interest_KnotPts=[];
 %12. Coverage HETM
 %13. Coverage PWID
 
+%outputs: SIAMLS
+%1. MSM incidence
+%2. HETF incidence
+%3. HETM incidence
+%4. PWID incidence
+%5. All incidence
+%6. Spending
+%7. Num PrEP MSM
+%8. Num PrEP HETF
+%9. Num PrEP HETM
+%10. Num PrEP PWID
+%11. Coverage MSM
+%12. Coverage HETF
+%13. Coverage HETM
+%14. Coverage PWID
+
 for j=1:length(relevantInterval)
 
      
@@ -88,8 +106,8 @@ for j=1:length(relevantInterval)
     %evalDomain(idx_dx2)=relevantInterval(j);
     %evalDomain(idx_dx3)=relevantInterval(j);
      
-    polyChaosEval=zeros(1,13);
-    polyChaosEvalDeriv=zeros(1,13);
+    polyChaosEval=zeros(1,14);
+    polyChaosEvalDeriv=zeros(1,14);
      
      for i=1:length(modal_coeffs1)          
 
@@ -105,7 +123,8 @@ for j=1:length(relevantInterval)
        polyChaosEval(10)=polyChaosEval(10)+modal_coeffs10(i)*lege_eval_multidim(evalDomain',K10(i,:),domain(1,:),domain(2,:));
        polyChaosEval(11)=polyChaosEval(11)+modal_coeffs11(i)*lege_eval_multidim(evalDomain',K11(i,:),domain(1,:),domain(2,:));
        polyChaosEval(12)=polyChaosEval(12)+modal_coeffs12(i)*lege_eval_multidim(evalDomain',K12(i,:),domain(1,:),domain(2,:));
-       polyChaosEval(13)=polyChaosEval(13)+modal_coeffs12(i)*lege_eval_multidim(evalDomain',K13(i,:),domain(1,:),domain(2,:));
+       polyChaosEval(13)=polyChaosEval(13)+modal_coeffs13(i)*lege_eval_multidim(evalDomain',K13(i,:),domain(1,:),domain(2,:));
+       polyChaosEval(14)=polyChaosEval(14)+modal_coeffs14(i)*lege_eval_multidim(evalDomain',K14(i,:),domain(1,:),domain(2,:));
 
        polyChaosEvalDeriv(1)=polyChaosEvalDeriv(1)+deriv_modal_coeffs1(i)*lege_eval_multidim_partialDer(evalDomain',deriv_K1(i,:),domain(1,:),domain(2,:),idx_dx);
        polyChaosEvalDeriv(2)=polyChaosEvalDeriv(2)+deriv_modal_coeffs2(i)*lege_eval_multidim_partialDer(evalDomain',deriv_K2(i,:),domain(1,:),domain(2,:),idx_dx);
@@ -119,7 +138,8 @@ for j=1:length(relevantInterval)
        polyChaosEvalDeriv(10)=polyChaosEvalDeriv(10)+deriv_modal_coeffs10(i)*lege_eval_multidim_partialDer(evalDomain',deriv_K10(i,:),domain(1,:),domain(2,:),idx_dx);
        polyChaosEvalDeriv(11)=polyChaosEvalDeriv(11)+deriv_modal_coeffs11(i)*lege_eval_multidim_partialDer(evalDomain',deriv_K11(i,:),domain(1,:),domain(2,:),idx_dx);
        polyChaosEvalDeriv(12)=polyChaosEvalDeriv(12)+deriv_modal_coeffs12(i)*lege_eval_multidim_partialDer(evalDomain',deriv_K12(i,:),domain(1,:),domain(2,:),idx_dx);
-       polyChaosEvalDeriv(13)=polyChaosEvalDeriv(12)+deriv_modal_coeffs13(i)*lege_eval_multidim_partialDer(evalDomain',deriv_K13(i,:),domain(1,:),domain(2,:),idx_dx);
+       polyChaosEvalDeriv(13)=polyChaosEvalDeriv(13)+deriv_modal_coeffs13(i)*lege_eval_multidim_partialDer(evalDomain',deriv_K13(i,:),domain(1,:),domain(2,:),idx_dx);
+       polyChaosEvalDeriv(14)=polyChaosEvalDeriv(14)+deriv_modal_coeffs14(i)*lege_eval_multidim_partialDer(evalDomain',deriv_K14(i,:),domain(1,:),domain(2,:),idx_dx);
 
      end
 

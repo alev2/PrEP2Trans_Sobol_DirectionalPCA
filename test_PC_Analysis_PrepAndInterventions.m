@@ -33,8 +33,8 @@ msm_TestRange=[0 1];
 pwid_TestRange=[0 1];
 
 
-outputRoot='./PrepToTransGroups/testResult_PrepAndInterventions_3/simulation_';
-outputRootPrEP='./PrepToTransGroups/testResult_PrepAndInterventions_3/simulationNumPrEP_';
+outputRoot='./PrepToTransGroups/testResult_PrepAndInterventions_4/simulation_';
+outputRootPrEP='./PrepToTransGroups/testResult_PrepAndInterventions_4/simulationNumPrEP_';
 %outputRoot='./Results_NoVLS_Dec27/Verification_HopeSim/simulation_';
 %outputRoot='./datasetInput/simulation_';
 %outputRoot='./dataset20Years/simulation_';
@@ -187,7 +187,7 @@ evalDomain=ones(1,10)*.5;
 
 %load('evalDomain_22Jan.mat');
 %load('principalDirections_LoMix2.mat');
-load('principalDirectionsPrepAndInterventions_3.mat');
+load('principalDirectionsIncreasedRange.mat');
 %evalDomain=.5*ones(10,1);
 %evalDomain=[0. 0. 0. 0. 0.];
 

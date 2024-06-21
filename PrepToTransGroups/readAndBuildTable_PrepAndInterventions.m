@@ -37,9 +37,12 @@ num_Yrs=length(yearInds);
 consideredYears=yearRange(yearInds);
 
 start_YrSum=2023;
-end_YrSum=2030;
+end_YrSum=2040;
+
+start_YrSumCost=2023;
 
 startIndex=find(consideredYears==start_YrSum);
+startIndexCost=find(consideredYears==start_YrSumCost);
 endIndex=find(consideredYears==end_YrSum);
 
 if(normVar==1)
@@ -199,6 +202,6 @@ fprintf('done.\n');
 % modelOutputs=[(values_g1(endIndex,:)); (values_g2(endIndex,:)); (values_g3(endIndex,:));...
 %               (values_g4(endIndex,:))];%; (values_g5(startIndex:endIndex,:))];%values_g6(end,:);values_g7(end,:)];
 modelOutputs=[sum(values_g1(startIndex:endIndex,:)); sum(values_g2(startIndex:endIndex,:)); sum(values_g3(startIndex:endIndex,:));...
-              sum(values_g4(startIndex:endIndex,:)); sum(values_g5(startIndex:endIndex,:)); sum(values_g6(startIndex:endIndex,:))];%values_g7(end,:)];
+              sum(values_g4(startIndex:endIndex,:)); sum(values_g5(startIndex:endIndex,:)); sum(values_g6(startIndexCost:endIndex,:))];%values_g7(end,:)];
 
 

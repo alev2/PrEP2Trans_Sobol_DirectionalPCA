@@ -24,7 +24,7 @@ function [] = plotIdentified_InterventionDirection(baselineDirection, inputDirec
 
     %        nexttile
         
-        inputDirection(5:7,:)=1-inputDirection(5:7,:);
+        %inputDirection(5:7,:)=1-inputDirection(5:7,:);
         %inputDirection(5:7,2)=1-inputDirection(5:7,2);
         bar(interventionNames,inputDirection*100)
         title('Input-output ROM: Identified intervention comparison','Interpreter','latex','FontSize',50);
@@ -34,7 +34,7 @@ function [] = plotIdentified_InterventionDirection(baselineDirection, inputDirec
         set(gca,'FontSize',fs);
         ax=gca;
         ax.YAxis.Exponent=0;
-      ylim([-25 200])
+      ylim([-25 100])
 
     %end
 

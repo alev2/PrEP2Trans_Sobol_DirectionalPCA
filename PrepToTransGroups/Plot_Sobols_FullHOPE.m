@@ -56,14 +56,14 @@ outcomeText={...
     'Incidence, HETM',...
     'Incidence, PWID',...
     'Incidence, Total',...
-    'Num. on PrEP, MSM',...
-    'Num. on PrEP, HETF',...
-    'Num. on PrEP, HETM',...
-    'Num. on PrEP, PWID',...
-    'Coverage, MSM',...
-    'Coverage, HETF',...
-    'Coverage, HETM',...
-    'Coverage, PWID',...
+%     'Num. on PrEP, MSM',...
+%     'Num. on PrEP, HETF',...
+%     'Num. on PrEP, HETM',...
+%     'Num. on PrEP, PWID',...
+%     'Coverage, MSM',...
+%     'Coverage, HETF',...
+%     'Coverage, HETM',...
+%     'Coverage, PWID',...
 };
 
 
@@ -94,11 +94,11 @@ tp=tiledlayout(2,2,'TileSpacing','compact','Padding','compact');
 nexttile
 
 %plot(yrs_Plot, Tot_Sob_g1_All(1,:) ,':s','color',colorMat(1,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g1_All(2,:) ,':s','color',colorMat(2,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g1_All(1,:) ,':s','color',colorMat(2,:),'LineWidth',lw);
 hold on
-plot(yrs_Plot, Tot_Sob_g1_All(3,:) ,':s','color',colorMat(3,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g1_All(4,:) ,':s','color',colorMat(4,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g1_All(5,:) ,':s','color',colorMat(5,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g1_All(2,:) ,':s','color',colorMat(3,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g1_All(3,:) ,':s','color',colorMat(4,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g1_All(4,:) ,':s','color',colorMat(5,:),'LineWidth',lw);
 
 xlim([yrs_Plot(1) yrs_Plot(end)])
 ylim([0 1])
@@ -117,11 +117,11 @@ ax.YAxis.Exponent=0;
 nexttile
 interventionCount=interventionCount+1;
 %plot(yrs_Plot, Tot_Sob_g2_All(1,:) ,':s','color',colorMat(1,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g2_All(2,:) ,':s','color',colorMat(2,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g2_All(1,:) ,':s','color',colorMat(2,:),'LineWidth',lw);
 hold on
-plot(yrs_Plot, Tot_Sob_g2_All(3,:) ,':s','color',colorMat(3,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g2_All(4,:) ,':s','color',colorMat(4,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g2_All(5,:) ,':s','color',colorMat(5,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g2_All(2,:) ,':s','color',colorMat(3,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g2_All(3,:) ,':s','color',colorMat(4,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g2_All(4,:) ,':s','color',colorMat(5,:),'LineWidth',lw);
 
 xlim([yrs_Plot(1) yrs_Plot(end)])
 ylim([0 1])
@@ -141,11 +141,11 @@ ax.YAxis.Exponent=0;
 nexttile
 interventionCount=interventionCount+1;
 %plot(yrs_Plot, Tot_Sob_g3_All(1,:) ,':s','color',colorMat(1,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g3_All(2,:) ,':s','color',colorMat(2,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g3_All(1,:) ,':s','color',colorMat(2,:),'LineWidth',lw);
 hold on
-plot(yrs_Plot, Tot_Sob_g3_All(3,:) ,':s','color',colorMat(3,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g3_All(4,:) ,':s','color',colorMat(4,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g3_All(5,:) ,':s','color',colorMat(5,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g3_All(2,:) ,':s','color',colorMat(3,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g3_All(3,:) ,':s','color',colorMat(4,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g3_All(4,:) ,':s','color',colorMat(5,:),'LineWidth',lw);
 
 xlim([yrs_Plot(1) yrs_Plot(end)])
 ylim([0 1])
@@ -165,11 +165,11 @@ ax.YAxis.Exponent=0;
 nexttile
 interventionCount=interventionCount+1;
 %plot(yrs_Plot, Tot_Sob_g4_All(1,:) ,':s','color',colorMat(1,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g4_All(2,:) ,':s','color',colorMat(2,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g4_All(1,:) ,':s','color',colorMat(2,:),'LineWidth',lw);
 hold on
-plot(yrs_Plot, Tot_Sob_g4_All(3,:) ,':s','color',colorMat(3,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g4_All(4,:) ,':s','color',colorMat(4,:),'LineWidth',lw);
-plot(yrs_Plot, Tot_Sob_g4_All(5,:) ,':s','color',colorMat(5,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g4_All(2,:) ,':s','color',colorMat(3,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g4_All(3,:) ,':s','color',colorMat(4,:),'LineWidth',lw);
+plot(yrs_Plot, Tot_Sob_g4_All(4,:) ,':s','color',colorMat(5,:),'LineWidth',lw);
 
 xlim([yrs_Plot(1) yrs_Plot(end)])
 ylim([0 1])

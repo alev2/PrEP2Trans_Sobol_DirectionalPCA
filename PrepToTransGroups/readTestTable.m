@@ -47,10 +47,10 @@ for k=1:nb_pts
 end
 
 fprintf('done.\n');
-%testOutputs=[sum(values_g1_Test(startIndex:endIndex,:)); sum(values_g2_Test(startIndex:endIndex,:)); sum(values_g3_Test(startIndex:endIndex,:));...
-%             sum(values_g4_Test(startIndex:endIndex,:)); sum(values_g5_Test(startIndex:endIndex,:))];
-modelOutputs=[(values_g1_Test(endIndex,:)); (values_g2_Test(endIndex,:)); (values_g3_Test(endIndex,:));...
-              (values_g4_Test(endIndex,:))];%; (values_g5(startIndex:endIndex,:))];%values_g6(end,:);values_g7(end,:)];
+testOutputs=[sum(values_g1_Test(startIndex:endIndex,:)); sum(values_g2_Test(startIndex:endIndex,:)); sum(values_g3_Test(startIndex:endIndex,:));...
+             sum(values_g4_Test(startIndex:endIndex,:)); sum(values_g5_Test(startIndex:endIndex,:))];
+%modelOutputs=[(values_g1_Test(endIndex,:)); (values_g2_Test(endIndex,:)); (values_g3_Test(endIndex,:));...
+%              (values_g4_Test(endIndex,:))];%; (values_g5(startIndex:endIndex,:))];%values_g6(end,:);values_g7(end,:)];
 
 %note that you gotta first run reducedOrderSobol for this to work
 testOutputsNorm=stdMat\(testOutputs-rowMeans(:,1:nb_pts));

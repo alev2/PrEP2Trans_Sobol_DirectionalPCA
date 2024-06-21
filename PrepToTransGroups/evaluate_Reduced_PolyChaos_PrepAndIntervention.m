@@ -20,25 +20,31 @@ rescaleIntervals=0;
 % 
 % ];
 
+%first paper
+%evalDomain_Base=ones(1,10)*.5;
+%evalDomain_Base2=[0 0 0 0 1 1 1 0 0 0];
+%newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\([150000; 24000; 14000; 12000;200000;425] - rowMeans(:,1)) )));
+%newDir2=Vk*(Sk\Uk')*((UApx'*(stdMat\([150000; 24000; 14000; 12000;200000;380] - rowMeans(:,1)) )));
+%newDir4=Vk*(Sk\Uk')*((UApx'*(stdMat\([130000; 22000; 12000; 11000;175000;475] - rowMeans(:,1)) )));
+%newDir5=Vk*(Sk\Uk')*((UApx'*(stdMat\([130000; 22000; 12000; 11000;175000;425] - rowMeans(:,1)) )));
+%newDir3=Vk*(Sk\Uk')*((UApx'*(stdMat\([120000; 18000; 10000; 10000;158000;490] - rowMeans(:,1)) )));
+%newDir6=Vk*(Sk\Uk')*((UApx'*(stdMat\([120000; 18000; 10000; 10000;158000;450] - rowMeans(:,1)) )));
 
+%evalDomain=[evalDomain_Base' evalDomain_Base2' evalDomain_Base'+newDir evalDomain_Base'+newDir2 evalDomain_Base'+newDir4 evalDomain_Base'+newDir5 evalDomain_Base'+newDir3 evalDomain_Base'+newDir6];
+
+
+%new thing for Paul eh
 evalDomain_Base=ones(1,10)*.5;
 evalDomain_Base2=[0 0 0 0 1 1 1 0 0 0];
-newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\([150000; 24000; 14000; 12000;200000;425] - rowMeans(:,1)) )));
-newDir2=Vk*(Sk\Uk')*((UApx'*(stdMat\([150000; 24000; 14000; 12000;200000;380] - rowMeans(:,1)) )));
-newDir4=Vk*(Sk\Uk')*((UApx'*(stdMat\([130000; 22000; 12000; 11000;175000;475] - rowMeans(:,1)) )));
-newDir5=Vk*(Sk\Uk')*((UApx'*(stdMat\([130000; 22000; 12000; 11000;175000;425] - rowMeans(:,1)) )));
-newDir3=Vk*(Sk\Uk')*((UApx'*(stdMat\([120000; 18000; 10000; 10000;158000;490] - rowMeans(:,1)) )));
-newDir6=Vk*(Sk\Uk')*((UApx'*(stdMat\([120000; 18000; 10000; 10000;158000;450] - rowMeans(:,1)) )));
+newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\([300000;  50000; 25000; 25000;400000;900] - rowMeans(:,1)) )));
+newDir2=Vk*(Sk\Uk')*((UApx'*(stdMat\([300000;  50000; 25000; 25000;400000;1100] - rowMeans(:,1)) )));
+newDir3=Vk*(Sk\Uk')*((UApx'*(stdMat\([250000;  40000; 20000; 20000;330000;900] - rowMeans(:,1)) )));
+newDir4=Vk*(Sk\Uk')*((UApx'*(stdMat\([250000;  40000; 20000; 20000;330000;1100] - rowMeans(:,1)) )));
+%newDir3=Vk*(Sk\Uk')*((UApx'*(stdMat\([120000; 18000; 10000; 10000;158000;490] - rowMeans(:,1)) )));
+%newDir6=Vk*(Sk\Uk')*((UApx'*(stdMat\([120000; 18000; 10000; 10000;158000;450] - rowMeans(:,1)) )));
 
+evalDomain=[evalDomain_Base' evalDomain_Base2' evalDomain_Base'+newDir evalDomain_Base'+newDir2 evalDomain_Base'+newDir3 evalDomain_Base'+newDir4];
 
-%newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\(AA(:,1) - rowMeans(:,1)) )));
-
-%newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\([400000; 67000; 36000; 31000; 534000] - rowMeans(:,1)) )));
-%newDir=Vk*(Sk\Uk')*((UApx'*(stdMat\(mm - rowMeans(:,1)) )));
-
-%newDir3=principalDirections(:,3)*5;  Vk*(Sk\Uk')*[1;0;0;0];
-
-evalDomain=[evalDomain_Base' evalDomain_Base2' evalDomain_Base'+newDir evalDomain_Base'+newDir2 evalDomain_Base'+newDir4 evalDomain_Base'+newDir5 evalDomain_Base'+newDir3 evalDomain_Base'+newDir6];
 
 evalDomain_Full=[];
 if rescaleIntervals==1
